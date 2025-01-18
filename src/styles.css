@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: #868D94;
+  background-color: #C7303E;
   transition: background-color 1s ease;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   user-select: none;
@@ -125,9 +125,10 @@ progress::-webkit-progress-value {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 65%;
-  left: 50%;
+  top: 61%;
+  left: 57%;
   transform: translate(-50%, -50%);
+  transition: background-color 1s ease; /* Add smooth transition */
 }
 
 .timer {
@@ -258,8 +259,8 @@ button:focus, button:active {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 45%;
-  left: 50%;
+  top: 46%;
+  left: 57.5%;
   transform: translate(-50%, -150%);
 }
 
@@ -287,3 +288,18 @@ button:focus, button:active {
   }
 }
 
+.session-active {
+  background-color: #868D94; /* Color when session is active */
+}
+
+.break-active {
+  background-color: #4CAF50; /* Color when break is active */
+}
+
+.circle-container.session-active {
+  background-color: #70787F; /* Circle color when session is active */
+}
+
+.circle-container.break-active {
+  background-color: #4CAF50; /* Circle color when break is active */
+}

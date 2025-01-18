@@ -199,6 +199,10 @@ function startTimer() {
   if (timer.mode === 'session') {
     timer.sessions++;
     document.querySelector('.gompei-image').classList.add('float');
+    document.body.classList.add('session-active');
+    document.body.classList.remove('break-active');
+    document.querySelector('.circle-container').classList.add('session-active');
+    document.querySelector('.circle-container').classList.remove('break-active');
   }
 
   mainButton.dataset.action = 'stop';
@@ -220,10 +224,18 @@ function startTimer() {
         case 'session':
           switchMode('break');
           document.querySelector('.gompei-image').classList.remove('float');
+          document.body.classList.add('break-active');
+          document.body.classList.remove('session-active');
+          document.querySelector('.circle-container').classList.add('break-active');
+          document.querySelector('.circle-container').classList.remove('session-active');
           break;
         default:
           switchMode('session');
           document.querySelector('.gompei-image').classList.add('float');
+          document.body.classList.add('session-active');
+          document.body.classList.remove('break-active');
+          document.querySelector('.circle-container').classList.add('session-active');
+          document.querySelector('.circle-container').classList.remove('break-active');
       }
 
       if (Notification.permission === 'granted') {
@@ -250,6 +262,8 @@ function stopTimer() {
   document.getElementById('js-seconds').setAttribute('contenteditable', 'true');
 
   document.querySelector('.gompei-image').classList.remove('float');
+  document.body.classList.remove('session-active', 'break-active');
+  document.querySelector('.circle-container').classList.remove('session-active', 'break-active');
 }
 
 function restartTimer() {
