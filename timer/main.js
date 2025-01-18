@@ -18,6 +18,13 @@ mainButton.addEventListener('click', () => {
   }
 });
 
+const restartButton = document.getElementById('js-restart-btn');
+restartButton.addEventListener('click', () => {
+  buttonSound.play();
+  restartTimer();
+  stopTimer();
+});
+
 const modeButtons = document.querySelector('#js-mode-buttons');
 modeButtons.addEventListener('click', handleMode);
 
@@ -92,6 +99,12 @@ function stopTimer() {
   document.getElementById('js-seconds').setAttribute('contenteditable', 'true');
 }
 
+function restartTimer() {
+  clearInterval(interval);
+  switchMode(timer.mode);
+  startTimer();
+}
+
 function updateClock() {
   const { remainingTime } = timer;
   const minutes = `${remainingTime.minutes}`.padStart(2, '0');
@@ -160,6 +173,24 @@ function updateTimerFromText() {
 
   document.getElementById('js-progress').setAttribute('max', timer.remainingTime.total);
   updateClock();
+  saveTimerSettings();
+}
+
+function saveTimerSettings() {
+  localStorage.setItem('sessionTime', timer.session);
+  localStorage.setItem('breakTime', timer.break);
+}
+
+function loadTimerSettings() {
+  const sessionTime = localStorage.getItem('sessionTime');
+  const breakTime = localStorage.getItem('breakTime');
+
+  if (sessionTime) {
+    timer.session = parseInt(sessionTime, 10);
+  }
+  if (breakTime) {
+    timer.break = parseInt(breakTime, 10);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -178,5 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  loadTimerSettings();
   switchMode('session');
 });

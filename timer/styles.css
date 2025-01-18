@@ -36,6 +36,20 @@ progress::-webkit-progress-value {
   background-color: #fff;
 }
 
+.circle-container {
+  width: 600px;
+  height: 600px;
+  background-color: grey;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .timer {
   position: absolute;
   top: 50%;
@@ -48,7 +62,7 @@ progress::-webkit-progress-value {
 .clock {
   margin-top: 50px;
   margin-bottom: 30px;
-  font-size: 15rem;
+  font-size: 12rem;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -81,7 +95,7 @@ progress::-webkit-progress-value {
   text-transform: uppercase;
   color: hsl(175, 26%, 41%);
   font-weight: bold;
-  width: 200px;
+  width: 150px;
   background-color: white;
   border-width: initial;
   border-style: none;
@@ -96,6 +110,34 @@ button:focus, button:active {
 }
 
 .main-button.active {
+  transform: translateY(6px);
+  box-shadow: none;
+  outline: none;
+}
+
+.restart-button {
+  cursor: pointer;
+  box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+  font-size: 22px;
+  height: 55px;
+  text-transform: uppercase;
+  color: hsl(175, 26%, 41%);
+  font-weight: bold;
+  width: 150px;
+  background-color: white;
+  border-width: initial;
+  border-style: none;
+  margin: 20px 10px 0px 0px;
+  padding: 0px 12px;
+  border-radius: 4px;
+  transition: color 0.5s ease-in-out 0s;
+}
+
+.restart-button:focus, .restart-button:active {
+  outline: none;
+}
+
+.restart-button.active {
   transform: translateY(6px);
   box-shadow: none;
   outline: none;
