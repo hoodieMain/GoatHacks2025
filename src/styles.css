@@ -303,3 +303,11 @@ button:focus, button:active {
 .circle-container.break-active {
   background-color: #4CAF50; /* Circle color when break is active */
 }
+
+#js-garden-btn {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 600px); /* Adjust the value to position the button to the right of the circle */
+  transform: translate(-50%, -50%);
+  z-index: 10; /* Ensure the button is above other elements */
+}
