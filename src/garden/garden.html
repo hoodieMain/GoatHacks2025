@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gompeidoro Garden</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d3748;
+            color: #fff;
+        }
+
+        .garden {
+            display: grid;
+            grid-template-columns: repeat(5, 100px);
+            grid-template-rows: repeat(5, 100px);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-color: #98c379;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .tile:hover {
+            transform: scale(1.1);
+        }
+
+        .plant {
+            width: 80px;
+            height: 80px;
+            background: url('https://cdn.pixabay.com/photo/2021/07/09/05/24/flower-6397237_960_720.png') no-repeat center center / cover;
+        }
+
+        .action-buttons {
+            margin: 20px;
+        }
+
+        button {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gompeidoro Garden</h1>
+    <p>Complete a study session to grow plants in your garden!</p>
+
+    <div class="action-buttons">
+        <button id="complete-session-btn">Complete Study Session</button>
+    </div>
+
+    <div class="garden" id="garden">
+        <!-- Dynamically filled with tiles -->
+    </div>
+
+    <script src="garden.js"></script>
+
+</body>
+</html>
