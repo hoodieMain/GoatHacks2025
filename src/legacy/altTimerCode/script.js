@@ -15,7 +15,7 @@ function updateTimer() {
     timerElement.textContent = 
         formatTime(minutes, seconds);
 
-    if (minutes === 0 && seconds === 0) {
+    if (minutes <= 0 && seconds <= 0) {
         clearInterval(timer);
         alert('Time is up! Take a break.');
     } else if (!isPaused) {
