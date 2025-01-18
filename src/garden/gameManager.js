@@ -26,4 +26,4 @@ function gameTick() {
 
 }
 
-export { tick, newPlant, gameTick, plants }; 
+export { newPlant, gameTick, plants }; 
