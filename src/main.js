@@ -1,3 +1,149 @@
+class Task {
+  constructor(id, title, estimatedPomodoros, priority = 'medium') {
+    this.id = id;
+    this.title = title;
+    this.estimatedPomodoros = estimatedPomodoros;
+    this.completedPomodoros = 0;
+    this.priority = priority;
+    this.status = 'pending'; // pending, in-progress, completed
+    this.createdAt = new Date();
+    this.completedAt = null;
+  }
+}
+
+class TaskManager {
+  constructor() {
+    this.tasks = [];
+    this.currentTaskId = null;
+    this.loadTasks();
+  }
+
+  addTask(title, estimatedPomodoros, priority) {
+    const id = Date.now().toString();
+    const task = new Task(id, title, estimatedPomodoros, priority);
+    this.tasks.push(task);
+    this.saveTasks();
+    return task;
+  }
+
+  startTask(taskId) {
+    const task = this.getTask(taskId);
+    if (task) {
+      this.currentTaskId = taskId;
+      task.status = 'in-progress';
+      this.saveTasks();
+    }
+  }
+
+  completePomodoro(taskId) {
+    const task = this.getTask(taskId);
+    if (task) {
+      task.completedPomodoros++;
+      this.saveTasks();
+    }
+  }
+
+  completeTask(taskId) {
+    const task = this.getTask(taskId);
+    if (task) {
+      task.status = 'completed';
+      task.completedAt = new Date();
+      this.currentTaskId = null;
+      this.saveTasks();
+    }
+  }
+
+  getTask(taskId) {
+    return this.tasks.find(task => task.id === taskId);
+  }
+
+  getCurrentTask() {
+    return this.tasks.find(task => task.id === this.currentTaskId);
+  }
+
+  getPendingTasks() {
+    return this.tasks.filter(task => task.status === 'pending');
+  }
+
+  saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem('currentTaskId', this.currentTaskId);
+    this.renderTasks();
+  }
+
+  loadTasks() {
+    const savedTasks = localStorage.getItem('tasks');
+    this.tasks = savedTasks ? JSON.parse(savedTasks) : [];
+    this.currentTaskId = localStorage.getItem('currentTaskId');
+    this.renderTasks();
+  }
+
+  renderTasks() {
+    // Render current task
+    const currentTaskElement = document.getElementById('currentTaskContent');
+    const currentTask = this.getCurrentTask();
+    
+    currentTaskElement.innerHTML = currentTask ? this.createTaskHTML(currentTask, true) : '<p>No current task</p>';
+
+    // Render pending tasks
+    const pendingTasksElement = document.getElementById('pendingTasksContent');
+    const pendingTasks = this.getPendingTasks();
+    
+    pendingTasksElement.innerHTML = pendingTasks.length > 0 ? 
+      pendingTasks.map(task => this.createTaskHTML(task, false)).join('') : 
+      '<p>No pending tasks</p>';
+
+    // Add event listeners
+    document.querySelectorAll('.task-actions button').forEach(button => {
+      button.onclick = () => {
+        const taskId = button.getAttribute('data-task-id');
+        if (button.classList.contains('start-task')) {
+          this.startTask(taskId);
+        } else if (button.classList.contains('complete-task')) {
+          this.completeTask(taskId);
+        }
+      };
+    });
+  }
+
+  createTaskHTML(task, isCurrent) {
+    return `
+      <div class="task-item priority-${task.priority}">
+        <h3>${task.title}</h3>
+        <div class="task-details">
+          <span class="pomodoro-count">
+            ${task.completedPomodoros}/${task.estimatedPomodoros} pomodoros
+          </span>
+          <span class="task-priority">${task.priority}</span>
+        </div>
+        <div class="task-actions">
+          ${!isCurrent ? 
+            `<button class="start-task" data-task-id="${task.id}">Start</button>` : 
+            `<button class="complete-task" data-task-id="${task.id}">Complete</button>`
+          }
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Initialize TaskManager
+const taskManager = new TaskManager();
+
+// Function to add new task from form
+function addNewTask() {
+  const title = document.getElementById('taskTitle').value;
+  const pomodoros = parseInt(document.getElementById('estimatedPomodoros').value);
+  const priority = document.getElementById('taskPriority').value;
+
+  if (title && pomodoros) {
+    taskManager.addTask(title, pomodoros, priority);
+    document.getElementById('taskTitle').value = '';
+    document.getElementById('estimatedPomodoros').value = '1';
+    document.getElementById('taskPriority').value = 'medium';
+  }
+}
+
 const timer = {
   session: 30,
   break: 5,
