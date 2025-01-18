@@ -393,3 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTimerSettings();
   switchMode('session');
 });
+
+document.addEventListener('xpChanged', () => {
+  const xp = gameManager.getXP;
+  document.getElementById('xp-count').textContent = `XP: ${xp}`;
+});
