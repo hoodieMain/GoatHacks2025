@@ -8,24 +8,47 @@
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
+    <div class="sidebar">
+      <h1>Task Manager</h1>
+      <div class="task-form">
+        <h2>Add New Task</h2>
+        <div class="form-group">
+          <input type="text" id="taskTitle" placeholder="Task title" required />
+        </div>
+        <div class="form-group">
+          <input type="number" id="estimatedPomodoros" min="1" value="1" placeholder="Estimated Pomodoros" required />
+        </div>
+        <div class="form-group">
+          <select id="taskPriority">
+            <option value="high">High Priority</option>
+            <option value="medium" selected>Medium Priority</option>
+            <option value="low">Low Priority</option>
+          </select>
+        </div>
+        <button onclick="addNewTask()">Add Task</button>
+      </div>
+      <div id="currentTask">
+        <h2>Current Task</h2>
+        <div id="currentTaskContent"></div>
+      </div>
+      <div id="pendingTasks">
+        <h2>Pending Tasks</h2>
+        <div id="pendingTasksContent"></div>
+      </div>
+    </div>
     <main class="app">
       <progress id="js-progress" value="0"></progress>
       <div class="progress-bar"></div>
+      <div class="image-container">
+        <img src="assets/gompei.png" alt="Gompei" class="gompei-image">
+      </div>
       <div class="circle-container">
         <div class="timer">
           <div class="button-group mode-buttons" id="js-mode-buttons">
-            <button
-              data-mode="session"
-              class="button active mode-button"
-              id="js-session"
-            >
+            <button data-mode="session" class="button active mode-button" id="js-session">
               Session
             </button>
-            <button
-              data-mode="break"
-              class="button mode-button"
-              id="js-break"
-            >
+            <button data-mode="break" class="button mode-button" id="js-break">
               Break
             </button>
           </div>
@@ -48,5 +71,6 @@
       <audio src="timer/break.mp3" data-sound="break"></audio>
     </div>
     <script src="src/main.js"></script>
+    <script src="src/toDoList/taskmanager.js"></script>
   </body>
 </html>

@@ -14,10 +14,89 @@ html {
 }
 
 body {
-  background-color: var(--session);
+  background-color: #868D94;
   transition: background-color 1s ease;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   user-select: none;
+  display: flex;
+}
+
+.sidebar {
+  width: 400px;
+  height: 100vh;
+  background: #f5f5f5;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h1, .sidebar h2 {
+  margin: 0 0 20px;
+}
+
+.task-form {
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input, select, button {
+  width: calc(100% - 10px);
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.task-item {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.priority-high { border-left: 4px solid #ff4444; }
+.priority-medium { border-left: 4px solid #ffbb33; }
+.priority-low { border-left: 4px solid #00C851; }
+
+.task-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  color: #666;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.start-task {
+  background-color: #00C851;
+}
+
+.complete-task {
+  background-color: #ff4444;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
 }
 
 progress {
@@ -37,15 +116,16 @@ progress::-webkit-progress-value {
 }
 
 .circle-container {
-  width: 600px;
-  height: 600px;
-  background-color: grey;
+  width: 550px;
+  height: 550px;
+  background-color: #ac2b37;
+  border: 5px solid #000;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 75%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -62,7 +142,7 @@ progress::-webkit-progress-value {
 .clock {
   margin-top: 50px;
   margin-bottom: 30px;
-  font-size: 12rem;
+  font-size: 9rem;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -72,6 +152,7 @@ progress::-webkit-progress-value {
 .mode-button {
   font-size: 16px;
   height: 28px;
+  width: 120px;
   cursor: pointer;
   box-shadow: none;
   font-weight: 300;
@@ -85,6 +166,12 @@ progress::-webkit-progress-value {
 
 .mode-button.active {
   border-color: #fff;
+}
+
+.mode-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
 .main-button {
@@ -165,6 +252,33 @@ button:focus, button:active {
 .timer-text[contenteditable="true"] {
   border: 1px dashed #ccc;
   padding: 2px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+}
+
+.gompei-image {
+  width: 250px;
+  height: 250px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.gompei-image.float {
+  animation: float 2s ease-in-out infinite;
 }
 
 @media screen and (max-width: 550px) {
