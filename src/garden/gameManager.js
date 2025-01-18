@@ -1,29 +1,30 @@
 // Manages the logic for the zen garden. This includ
 import { Plant } from './plant.js';
 
-let plant_pots = 3;
-let plants = [];
-let money = 0;
-
-function newPlant(new_plant) {
-    if (plants.length < plant_pots){
-        plants.push(new_plant);
-    } else {
-        console.log("You have no more available plant pots! You currently have " + plant_pots + ".");
+class GameManager {
+    
+    constructor(plant_pots = 3, plants = [], money = []){
+        this.plant_pots = 3;
+        this.plants = [];
+        this.money = 0;
     }
-}
 
-function newPot() {
-    this.plant_pots += 1;
-}
-
-function gameTick() {
-    for (let plant of plants) {
-        money += plant.grow(null, true);
+    newPlant(new_plant) {
+        if (this.plants.length < this.plant_pots){
+            this.plants.push(new_plant);
+        } else {
+            console.log("You have no more available plant pots! You currently have " + this.plant_pots + ".");
+        }
     }
-    console.log("Money: $" + money);
-    console.log();
 
-}
+    gameTick() {
+        for (let plant of this.plants) {
+            this.money += plant.grow(null, true);
+        }
+        console.log("Money: $" + this.money);
+        console.log();
+    
+    }
+} 
 
-export { newPlant, gameTick, plants }; 
+export { GameManager };
