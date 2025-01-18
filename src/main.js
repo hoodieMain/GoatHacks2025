@@ -1,3 +1,5 @@
+import { GameManager } from "./garden/gameManager.js";
+
 class Task {
   constructor(id, title, estimatedPomodoros, priority = 'medium') {
     this.id = id;
@@ -150,7 +152,11 @@ const timer = {
   sessions: 0,
 };
 
+
+// Timer functionality
 let interval;
+let gameTickInterval = 3; // The amount of time between each game tick in seconds.
+let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
 
 const buttonSound = new Audio('button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
@@ -215,6 +221,11 @@ function startTimer() {
   interval = setInterval(function() {
     timer.remainingTime = getRemainingTime(endTime);
     updateClock();
+
+        // Calls gameTick from gameManager to grow plants every 5 minutes.
+      if (timer.remainingTime.total % gameTickInterval === 0) {
+          gameManager.gameTick();
+      }
 
     total = timer.remainingTime.total;
     if (total <= 0) {
