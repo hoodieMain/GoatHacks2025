@@ -1,5 +1,5 @@
 const timer = {
-  session: 25,
+  session: 30,
   break: 5,
   sessions: 0,
 };
