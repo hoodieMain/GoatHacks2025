@@ -196,7 +196,10 @@ function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
 
-  if (timer.mode === 'session') timer.sessions++;
+  if (timer.mode === 'session') {
+    timer.sessions++;
+    document.querySelector('.gompei-image').classList.add('float');
+  }
 
   mainButton.dataset.action = 'stop';
   mainButton.textContent = 'stop';
@@ -216,9 +219,11 @@ function startTimer() {
       switch (timer.mode) {
         case 'session':
           switchMode('break');
+          document.querySelector('.gompei-image').classList.remove('float');
           break;
         default:
           switchMode('session');
+          document.querySelector('.gompei-image').classList.add('float');
       }
 
       if (Notification.permission === 'granted') {
@@ -243,6 +248,8 @@ function stopTimer() {
 
   document.getElementById('js-minutes').setAttribute('contenteditable', 'true');
   document.getElementById('js-seconds').setAttribute('contenteditable', 'true');
+
+  document.querySelector('.gompei-image').classList.remove('float');
 }
 
 function restartTimer() {
@@ -281,7 +288,10 @@ function switchMode(mode) {
     .querySelectorAll('button[data-mode]')
     .forEach(e => e.classList.remove('active'));
   document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
-  document.body.style.backgroundColor = `var(--${mode})`;
+
+  // Comment out or remove the line that changes the background color
+  // document.body.style.backgroundColor = `var(--${mode})`;
+
   document
     .getElementById('js-progress')
     .setAttribute('max', timer.remainingTime.total);
