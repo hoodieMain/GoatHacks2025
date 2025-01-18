@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .task-form {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+
+        .task-item {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .priority-high { border-left: 4px solid #ff4444; }
+        .priority-medium { border-left: 4px solid #ffbb33; }
+        .priority-low { border-left: 4px solid #00C851; }
+
+        .task-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .start-task {
+            background-color: #00C851;
+        }
+
+        .complete-task {
+            background-color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Manager Demo</h1>
+    
+    <div class="task-form">
+        <h2>Add New Task</h2>
+        <div class="form-group">
+            <input type="text" id="taskTitle" placeholder="Task title" required>
+        </div>
+        <div class="form-group">
+            <input type="number" id="estimatedPomodoros" min="1" value="1" placeholder="Estimated Pomodoros" required>
+        </div>
+        <div class="form-group">
+            <select id="taskPriority">
+                <option value="high">High Priority</option>
+                <option value="medium" selected>Medium Priority</option>
+                <option value="low">Low Priority</option>
+            </select>
+        </div>
+        <button onclick="addNewTask()">Add Task</button>
+    </div>
+
+    <div id="currentTask">
+        <h2>Current Task</h2>
+        <div id="currentTaskContent"></div>
+    </div>
+
+    <div id="pendingTasks">
+        <h2>Pending Tasks</h2>
+        <div id="pendingTasksContent"></div>
+    </div>
+
+    <script>
+        class Task {
+            constructor(id, title, estimatedPomodoros, priority = 'medium') {
+                this.id = id;
+                this.title = title;
+                this.estimatedPomodoros = estimatedPomodoros;
+                this.completedPomodoros = 0;
+                this.priority = priority;
+                this.status = 'pending'; // pending, in-progress, completed
+                this.createdAt = new Date();
+                this.completedAt = null;
+            }
+        }
+
+        class TaskManager {
+            constructor() {
+                this.tasks = [];
+                this.currentTaskId = null;
+                this.loadTasks();
+            }
+
+            addTask(title, estimatedPomodoros, priority) {
+                const id = Date.now().toString();
+                const task = new Task(id, title, estimatedPomodoros, priority);
+                this.tasks.push(task);
+                this.saveTasks();
+                return task;
+            }
+
+            startTask(taskId) {
+                const task = this.getTask(taskId);
+                if (task) {
+                    this.currentTaskId = taskId;
+                    task.status = 'in-progress';
+                    this.saveTasks();
+                }
+            }
+
+            completePomodoro(taskId) {
+                const task = this.getTask(taskId);
+                if (task) {
+                    task.completedPomodoros++;
+                    this.saveTasks();
+                }
+            }
+
+            completeTask(taskId) {
+                const task = this.getTask(taskId);
+                if (task) {
+                    task.status = 'completed';
+                    task.completedAt = new Date();
+                    this.currentTaskId = null;
+                    this.saveTasks();
+                }
+            }
+
+            getTask(taskId) {
+                return this.tasks.find(task => task.id === taskId);
+            }
+
+            getCurrentTask() {
+                return this.tasks.find(task => task.id === this.currentTaskId);
+            }
+
+            getPendingTasks() {
+                return this.tasks.filter(task => task.status === 'pending');
+            }
+
+            saveTasks() {
+                localStorage.setItem('tasks', JSON.stringify(this.tasks));
+                localStorage.setItem('currentTaskId', this.currentTaskId);
+                this.renderTasks();
+            }
+
+            loadTasks() {
+                const savedTasks = localStorage.getItem('tasks');
+                this.tasks = savedTasks ? JSON.parse(savedTasks) : [];
+                this.currentTaskId = localStorage.getItem('currentTaskId');
+                this.renderTasks();
+            }
+
+            renderTasks() {
+                // Render current task
+                const currentTaskElement = document.getElementById('currentTaskContent');
+                const currentTask = this.getCurrentTask();
+                
+                currentTaskElement.innerHTML = currentTask ? this.createTaskHTML(currentTask, true) : '<p>No current task</p>';
+
+                // Render pending tasks
+                const pendingTasksElement = document.getElementById('pendingTasksContent');
+                const pendingTasks = this.getPendingTasks();
+                
+                pendingTasksElement.innerHTML = pendingTasks.length > 0 ? 
+                    pendingTasks.map(task => this.createTaskHTML(task, false)).join('') : 
+                    '<p>No pending tasks</p>';
+
+                // Add event listeners
+                document.querySelectorAll('.task-actions button').forEach(button => {
+                    button.onclick = () => {
+                        const taskId = button.getAttribute('data-task-id');
+                        if (button.classList.contains('start-task')) {
+                            this.startTask(taskId);
+                        } else if (button.classList.contains('complete-task')) {
+                            this.completeTask(taskId);
+                        }
+                    };
+                });
+            }
+
+            createTaskHTML(task, isCurrent) {
+                return `
+                    <div class="task-item priority-${task.priority}">
+                        <h3>${task.title}</h3>
+                        <div class="task-details">
+                            <span class="pomodoro-count">
+                                ${task.completedPomodoros}/${task.estimatedPomodoros} pomodoros
+                            </span>
+                            <span class="task-priority">${task.priority}</span>
+                        </div>
+                        <div class="task-actions">
+                            ${!isCurrent ? 
+                                `<button class="start-task" data-task-id="${task.id}">Start</button>` : 
+                                `<button class="complete-task" data-task-id="${task.id}">Complete</button>`
+                            }
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize TaskManager
+        const taskManager = new TaskManager();
+
+        // Function to add new task from form
+        function addNewTask() {
+            const title = document.getElementById('taskTitle').value;
+            const pomodoros = parseInt(document.getElementById('estimatedPomodoros').value);
+            const priority = document.getElementById('taskPriority').value;
+
+            if (title && pomodoros) {
+                taskManager.addTask(title, pomodoros, priority);
+                document.getElementById('taskTitle').value = '';
+                document.getElementById('estimatedPomodoros').value = '1';
+                document.getElementById('taskPriority').value = 'medium';
+            }
+        }
+    </script>
+</body>
+</html>
