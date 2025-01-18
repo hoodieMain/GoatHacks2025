@@ -1,6 +1,6 @@
 // A file for demoing any plant functionality.
 import { Plant } from './plant.js';
-import { tick, newPlant, gameTick, plants } from './gameManager.js';
+import { newPlant, gameTick, plants } from './gameManager.js';
 
 
 let rose = new Plant("Rose", 1, 2, 10);
