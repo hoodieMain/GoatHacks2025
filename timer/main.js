@@ -49,6 +49,9 @@ function startTimer() {
   mainButton.textContent = 'stop';
   mainButton.classList.add('active');
 
+  document.getElementById('js-minutes').setAttribute('contenteditable', 'false');
+  document.getElementById('js-seconds').setAttribute('contenteditable', 'false');
+
   interval = setInterval(function() {
     timer.remainingTime = getRemainingTime(endTime);
     updateClock();
@@ -84,6 +87,9 @@ function stopTimer() {
   mainButton.dataset.action = 'start';
   mainButton.textContent = 'start';
   mainButton.classList.remove('active');
+
+  document.getElementById('js-minutes').setAttribute('contenteditable', 'true');
+  document.getElementById('js-seconds').setAttribute('contenteditable', 'true');
 }
 
 function updateClock() {
