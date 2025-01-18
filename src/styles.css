@@ -128,6 +128,7 @@ progress::-webkit-progress-value {
   top: 61%;
   left: 57%;
   transform: translate(-50%, -50%);
+  overflow: auto;
   transition: background-color 1s ease; /* Add smooth transition */
 }
 
