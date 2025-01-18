@@ -1,0 +1,46 @@
+
+/*This class is the styling functionality of the app*/ 
+
+.task-item {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.priority-high { border-left: 4px solid #ff4444; }
+.priority-medium { border-left: 4px solid #ffbb33; }
+.priority-low { border-left: 4px solid #00C851; }
+
+.task-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    color: #666;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.task-section {
+    margin: 20px 0;
+}
+
+button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.start-task {
+    background-color: #00C851;
+    color: white;
+}
+
+.complete-task {
+    background-color: #ff4444;
+    color: white;
+}
