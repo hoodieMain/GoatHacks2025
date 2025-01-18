@@ -304,10 +304,21 @@ button:focus, button:active {
   background-color: #4CAF50; /* Circle color when break is active */
 }
 
-#js-garden-btn {
+.garden-container {
   position: absolute;
   top: 50%;
   left: calc(50% + 600px); /* Adjust the value to position the button to the right of the circle */
   transform: translate(-50%, -50%);
   z-index: 10; /* Ensure the button is above other elements */
+  display: flex;
+  flex-direction: column; /* Arrange elements vertically */
+  align-items: center; /* Center-align children horizontally */
+  margin-top: 20px; /* Add spacing above the container */
+}
+
+#xp-count {
+  margin-top: 20px; /* Add spacing above the label */
+  font-size: 3rem; /* Set a readable font size */
+  color: hsl(175, 26%, 41%); /* Match the button text color */
+  text-align: center; /* Center the text */
 }
