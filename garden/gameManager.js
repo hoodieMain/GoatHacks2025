@@ -5,10 +5,6 @@ let plant_pots = 3;
 let plants = [];
 let money = 0;
 
-function tick() {
-
-}
-
 function newPlant(new_plant) {
     if (plants.length < plant_pots){
         plants.push(new_plant);
