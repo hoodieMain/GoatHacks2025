@@ -1,5 +1,5 @@
 const timer = {
-  session: 25,
+  session: 30,
   break: 5,
   sessions: 0,
 };
@@ -16,6 +16,13 @@ mainButton.addEventListener('click', () => {
   } else {
     stopTimer();
   }
+});
+
+const restartButton = document.getElementById('js-restart-btn');
+restartButton.addEventListener('click', () => {
+  buttonSound.play();
+  restartTimer();
+  stopTimer();
 });
 
 const modeButtons = document.querySelector('#js-mode-buttons');
@@ -48,6 +55,9 @@ function startTimer() {
   mainButton.dataset.action = 'stop';
   mainButton.textContent = 'stop';
   mainButton.classList.add('active');
+
+  document.getElementById('js-minutes').setAttribute('contenteditable', 'false');
+  document.getElementById('js-seconds').setAttribute('contenteditable', 'false');
 
   interval = setInterval(function() {
     timer.remainingTime = getRemainingTime(endTime);
@@ -84,6 +94,15 @@ function stopTimer() {
   mainButton.dataset.action = 'start';
   mainButton.textContent = 'start';
   mainButton.classList.remove('active');
+
+  document.getElementById('js-minutes').setAttribute('contenteditable', 'true');
+  document.getElementById('js-seconds').setAttribute('contenteditable', 'true');
+}
+
+function restartTimer() {
+  clearInterval(interval);
+  switchMode(timer.mode);
+  startTimer();
 }
 
 function updateClock() {
@@ -154,6 +173,24 @@ function updateTimerFromText() {
 
   document.getElementById('js-progress').setAttribute('max', timer.remainingTime.total);
   updateClock();
+  saveTimerSettings();
+}
+
+function saveTimerSettings() {
+  localStorage.setItem('sessionTime', timer.session);
+  localStorage.setItem('breakTime', timer.break);
+}
+
+function loadTimerSettings() {
+  const sessionTime = localStorage.getItem('sessionTime');
+  const breakTime = localStorage.getItem('breakTime');
+
+  if (sessionTime) {
+    timer.session = parseInt(sessionTime, 10);
+  }
+  if (breakTime) {
+    timer.break = parseInt(breakTime, 10);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -172,5 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  loadTimerSettings();
   switchMode('session');
 });

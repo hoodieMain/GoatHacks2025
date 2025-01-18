@@ -11,31 +11,36 @@
     <main class="app">
       <progress id="js-progress" value="0"></progress>
       <div class="progress-bar"></div>
-      <div class="timer">
-        <div class="button-group mode-buttons" id="js-mode-buttons">
-          <button
-            data-mode="session"
-            class="button active mode-button"
-            id="js-session"
-          >
-            Session
+      <div class="circle-container">
+        <div class="timer">
+          <div class="button-group mode-buttons" id="js-mode-buttons">
+            <button
+              data-mode="session"
+              class="button active mode-button"
+              id="js-session"
+            >
+              Session
+            </button>
+            <button
+              data-mode="break"
+              class="button mode-button"
+              id="js-break"
+            >
+              Break
+            </button>
+          </div>
+          <div class="clock" id="js-clock">
+            <span id="js-minutes" class="timer-text" contenteditable="true"></span>
+            <span class="separator">:</span>
+            <span id="js-seconds" class="timer-text" contenteditable="true"></span>
+          </div>
+          <button class="restart-button" data-action="restart" id="js-restart-btn">
+            Restart
           </button>
-          <button
-            data-mode="break"
-            class="button mode-button"
-            id="js-break"
-          >
-            Break
+          <button class="main-button" data-action="start" id="js-btn">
+            Start
           </button>
         </div>
-        <div class="clock" id="js-clock">
-          <span id="js-minutes" class="timer-text" contenteditable="true">25</span>
-          <span class="separator">:</span>
-          <span id="js-seconds" class="timer-text" contenteditable="true">00</span>
-        </div>
-        <button class="main-button" data-action="start" id="js-btn">
-          Start
-        </button>
       </div>
     </main>
     <div class="hidden">
