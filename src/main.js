@@ -158,7 +158,7 @@ let interval;
 let gameTickInterval = 3; // The amount of time between each game tick in seconds.
 let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
 
-const buttonSound = new Audio('button-sound.mp3');
+const buttonSound = new Audio('src/timer/button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', () => {
   buttonSound.play();
