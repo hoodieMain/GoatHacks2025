@@ -171,7 +171,7 @@
             text-transform: uppercase;
             color: hsl(175, 26%, 41%);
             font-weight: bold;
-            width: 150px;
+            width: 200px; /* Increase width to fit text */
             background-color: white;
             border-width: initial;
             border-style: none;
@@ -179,6 +179,9 @@
             padding: 0px 12px;
             border-radius: 4px;
             transition: color 0.5s ease-in-out 0s;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center text inside button */
         }
 
         .main-button:focus, .main-button:active {
@@ -189,6 +192,13 @@
             transform: translateY(6px);
             box-shadow: none;
             outline: none;
+        }
+
+        .shop-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 1vw; /* Add gap between buttons */
+            margin-bottom: 2vh; /* Add margin to increase space below the buttons */
         }
     </style>
 </head>
@@ -213,47 +223,48 @@
             <div class="shop-controls">
                 <button class="main-button" onclick="buyPot()" id="planter-buy">Buy Planter: ($150)</button>
                 <button class="main-button" onclick="buyPlant()" id="plant-buy">Discover New Plant: (100xp)</button>
+                <button class="main-button" id="reset-btn">(Dev) Reset</button>
             </div>
 
             <div class="garden-grid">
                 <!-- First Row -->
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="180vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <!-- Second Row -->
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <!-- Third Row -->
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
                 <div class="plant-container">
-                    <img class="plant-image" src='' height="100vh"></img>
+                    <img class="plant-image" src='' height="150vh" width="150vw"></img>
                 </div>
             </div>
         </div>

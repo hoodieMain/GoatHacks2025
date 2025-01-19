@@ -7,12 +7,12 @@
  * @param yield_chance (decimal between 0 and 1): The chance for the plant to return its age in money each time it grows.
  */
 export class Plant{
-    constructor(species, min_growth, max_growth, max_age, min_yield, max_yield, growth_stages) {
+    constructor(species, min_growth, max_growth, max_age, min_yield, max_yield, growth_stages, age = 0) {
         this.species = species; // Species of plant
         this.min_growth = min_growth; // Minimum amount grown per tick
         this.max_growth = max_growth; // Maximum amount grown per tick
         this.max_age = max_age;   // Maximum age of plant
-        this.age = 0;   // Current age of plant
+        this.age = age;   // Current age of plant
         this.growthStage = 0;   // Current growth stage of plant (Determined from age)
         this.min_yield = min_yield; // Chance to yield money.
         this.max_yield = max_yield; // Chance to yield money.
@@ -50,5 +50,9 @@ export class Plant{
         }
 
         return yield_val;
+    }
+    
+    growthStageGet(){
+        return Math.floor((this.age / this.max_age) * this.growth_stages.length);
     }
 }
