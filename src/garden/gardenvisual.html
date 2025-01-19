@@ -112,6 +112,7 @@
             display: flex;
             justify-content: center;
             gap: 1vw;
+            margin-bottom: 2vh; /* Add margin to increase space below the buttons */
         }
 
         .time-btn {
@@ -180,6 +181,34 @@
             position: absolute;
             left: 33.33%;
         }
+
+        .main-button {
+            cursor: pointer;
+            box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+            font-size: 22px;
+            height: 55px;
+            text-transform: uppercase;
+            color: hsl(175, 26%, 41%);
+            font-weight: bold;
+            width: 150px;
+            background-color: white;
+            border-width: initial;
+            border-style: none;
+            margin: 20px 0px 0px;
+            padding: 0px 12px;
+            border-radius: 4px;
+            transition: color 0.5s ease-in-out 0s;
+        }
+
+        .main-button:focus, .main-button:active {
+            outline: none;
+        }
+
+        .main-button.active {
+            transform: translateY(6px);
+            box-shadow: none;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -196,9 +225,9 @@
         <!-- Right Column -->
         <div class="right-column">
             <div class="header">
-                <div class="icon">🛒</div>
+                <button class="main-button">Shop</button>
                 <h1 class="title">Higgins Garden</h1>
-                <div class="icon">⏰</div>
+                <button class="main-button" onclick="location.href='../../../index.html'">Home</button>
             </div>
 
             <div class="time-controls">

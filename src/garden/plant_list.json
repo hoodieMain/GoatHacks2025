@@ -1,54 +1,62 @@
 [
-  {
-    "species": "Rose",
-    "min_growth": 1,
-    "max_growth": 2,
-    "max_age": 10,
-    "yield_chance": 0.2,
-    "growth_stages": [
-      ".assets/rose0.png",
-      ".assets/rose1.png",
-      ".assets/rose2.png",
-      ".assets/rose3.png"
-    ]
-  },
-  {
-      "species": "Weed",
-      "min_growth": 1,
-      "max_growth": 1,
-      "max_age": 3,
-      "yield_chance": 0.0,
-      "growth_stages": [
-        ".assets/weed0.png",
-        ".assets/weed1.png",
-        ".assets/weed2.png",
-        ".assets/weed3.png"
-      ]
-  },
-  {
-      "species": "Oak",
-      "min_growth": 0,
-      "max_growth": 10,
-      "max_age": 100,
-      "yield_chance": 0.1,
-      "growth_stages": [
-        ".assets/oak0.png",
-        ".assets/oak1.png",
-        ".assets/oak2.png",
-        ".assets/oak3.png"
-      ]
-  },
-  {
-      "species": "Berry Bush",
-      "min_growth": 3,
-      "max_growth": 10,
-      "max_age": 100,
-      "yield_chance": 0.1,
-      "growth_stages": [
-        ".assets/berry_bush0.png",
-        ".assets/berry_bush1.png",
-        ".assets/berry_bush2.png",
-        ".assets/berry_bush3.png"
-      ]
-  }
+    {
+        "species": "Rose",
+        "min_growth": 1,
+        "max_growth": 2,
+        "max_age": 10,
+        "yield_chance": 0.2,
+        "min_yield": 1,
+        "max_yield": 2,
+        "growth_stages": [
+            ".assets/rose0.png",
+            ".assets/rose1.png",
+            ".assets/rose2.png",
+            ".assets/rose3.png"
+        ]
+    },
+    {
+        "species": "Weed",
+        "min_growth": 1,
+        "max_growth": 1,
+        "max_age": 3,
+        "yield_chance": 0.0,
+        "min_yield": 0,
+        "max_yield": 0,
+        "growth_stages": [
+            ".assets/weed0.png",
+            ".assets/weed1.png",
+            ".assets/weed2.png",
+            ".assets/weed3.png"
+        ]
+    },
+    {
+        "species": "Oak",
+        "min_growth": 0,
+        "max_growth": 10,
+        "max_age": 100,
+        "yield_chance": 0.1,
+        "min_yield": 3,
+        "max_yield": 7,
+        "growth_stages": [
+            ".assets/oak0.png",
+            ".assets/oak1.png",
+            ".assets/oak2.png",
+            ".assets/oak3.png"
+        ]
+    },
+    {
+        "species": "Berry Bush",
+        "min_growth": 3,
+        "max_growth": 10,
+        "max_age": 100,
+        "yield_chance": 0.3,
+        "min_yield": 2,
+        "max_yield": 5,
+        "growth_stages": [
+            ".assets/berry_bush0.png",
+            ".assets/berry_bush1.png",
+            ".assets/berry_bush2.png",
+            ".assets/berry_bush3.png"
+        ]
+    }
 ]
