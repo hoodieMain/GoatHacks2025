@@ -1,3 +1,4 @@
+/**
 document.addEventListener('DOMContentLoaded', () => {
     const garden = document.getElementById('garden');
     const completeSessionBtn = document.getElementById('complete-session-btn');
@@ -28,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    
+
     // Button click event
     completeSessionBtn.addEventListener('click', () => {
         addPlant();
@@ -36,3 +39,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the garden on page load
     initializeGarden();
 });
+**/
+
+// Render plants in the garden
+/**
+function renderGarden() {
+    gardenElement.innerHTML = ''; // Clear existing plants
+    gameManager.plants.forEach((plant) => {
+      const plantElement = document.createElement('div');
+      plantElement.classList.add('plant');
+      plantElement.textContent = `🌱 ${plant.species}`;
+      gardenElement.appendChild(plantElement);
+    });
+  }
+  
+  // Re-render garden when a new plant is added
+  document.addEventListener('newPlantAdded', () => {
+    renderGarden();
+  });
+  
+  // Initial render on page load
+  renderGarden();
+**/
