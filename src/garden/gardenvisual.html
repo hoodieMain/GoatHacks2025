@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higgins Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #333;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dashboard {
+            width: 100vw;
+            height: 100vh;
+            background: #B74556;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2vw;
+        }
+
+        .left-column {
+            padding: 2vh 2vw;
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+        }
+
+        .analytics-overview {
+            color: white;
+            font-size: clamp(16px, 1.5vw, 24px);
+            background: rgba(169, 176, 183, 0.37);
+            padding: 1.5vh 2vw;
+            border-radius: 16px;
+            border: 2px solid #0C2D03;
+            text-align: left;
+        }
+
+        .analytics-box {
+            width: 100%;
+            height: 35vh;
+            background: #D9D9D9;
+            border-radius: 12px;
+            border: 2px solid #0C2D03;
+        }
+
+        .read-analytics {
+            width: 100%;
+            padding: 1.5vh 2vw;
+            background: rgba(187, 132, 148, 0.80);
+            border-radius: 12px;
+            border: 2px solid #0C2D03;
+            color: white;
+            font-size: clamp(14px, 1.2vw, 20px);
+            cursor: pointer;
+        }
+
+        .right-column {
+            padding: 2vh 2vw;
+            display: flex;
+            flex-direction: column;
+            gap: 4vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title {
+            color: white;
+            font-size: clamp(24px, 3vw, 48px);
+            background: rgba(169, 176, 183, 0.37);
+            padding: 1vh 3vw;
+            border-radius: 16px;
+            border: 2px solid #0C2D03;
+            text-align: center;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: #D9D9D9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 2px solid #0C2D03;
+        }
+
+        .time-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1vw;
+        }
+
+        .time-btn {
+            padding: 1vh 3vw;
+            background: rgba(169, 176, 183, 0.37);
+            border: 2px solid #0C2D03;
+            color: white;
+            font-size: clamp(14px, 1vw, 18px);
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .garden-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+            padding: 2vh 0;
+        }
+
+        .plant-container {
+            background: #7E9C66;
+            border-radius: 20px;
+            border: 2px solid #0C2D03;
+            height: 12vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .plant {
+            width: 100%;
+            height: 20vh;
+            position: absolute;
+            bottom: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            transition: all 0.3s ease;
+        }
+
+        .plant.stage-0 {
+            background-image: url('../../assets/flower0.png');
+            height: 15vh;
+        }
+
+        .plant.stage-1 {
+            background-image: url('../../assets/flower1.png');
+            height: 17vh;
+        }
+
+        .plant.stage-2 {
+            background-image: url('../../assets/flower2.png');
+            height: 19vh;
+        }
+
+        .plant.stage-3 {
+            background-image: url('../../assets/flower3.png');
+            height: 21vh;
+        }
+
+        .divider {
+            width: 2px;
+            background: white;
+            height: 100%;
+            position: absolute;
+            left: 33.33%;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="divider"></div>
+        <!-- Left Column -->
+        <div class="left-column">
+            <div class="analytics-overview">Analytics Overview</div>
+            <div class="analytics-box"></div>
+            <button class="read-analytics">Read Analytics</button>
+            <div class="analytics-box"></div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="header">
+                <div class="icon">🛒</div>
+                <h1 class="title">Higgins Garden</h1>
+                <div class="icon">⏰</div>
+            </div>
+
+            <div class="time-controls">
+                <button class="time-btn">Week</button>
+                <button class="time-btn">Month</button>
+                <button class="time-btn">Year</button>
+            </div>
+
+            <div class="garden-grid">
+                <!-- First Row -->
+                <div class="plant-container">
+                    <div class="plant stage-0"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-1"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-2"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-3"></div>
+                </div>
+                <!-- Second Row -->
+                <div class="plant-container">
+                    <div class="plant stage-0"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-1"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-2"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-3"></div>
+                </div>
+                <!-- Third Row -->
+                <div class="plant-container">
+                    <div class="plant stage-0"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-1"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-2"></div>
+                </div>
+                <div class="plant-container">
+                    <div class="plant stage-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
