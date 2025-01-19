@@ -36,44 +36,84 @@
             gap: 2vw;
         }
 
+        /* Left Column - Chat Styles */
         .left-column {
             padding: 2vh 2vw;
             display: flex;
             flex-direction: column;
-            gap: 2vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
-        .analytics-overview {
+        .chat-header {
+            background: #4CAF50;
             color: white;
-            font-size: clamp(16px, 1.5vw, 24px);
-            background: rgba(187, 132, 148, 0.80);
-            padding: 1.5vh 2vw;
-            border-radius: 16px;
-            border: 2px solid #0C2D03;
-            width: 100%;
-            cursor: pointer;
+            padding: 20px;
             text-align: center;
+            border-radius: 12px;
+            margin-bottom: 2vh;
         }
 
-        .analytics-box {
-            width: 100%;
-            height: 35vh;
-            background: #D9D9D9;
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid #0C2D03;
+            margin-bottom: 2vh;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            max-width: 80%;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: #E3F2FD;
+            margin-left: auto;
+            color: #1565C0;
+        }
+
+        .bot-message {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            background: white;
             border-radius: 12px;
             border: 2px solid #0C2D03;
         }
 
-        .read-analytics {
-            color: white;
-            font-size: clamp(16px, 1.5vw, 24px);
-            background: rgba(187, 132, 148, 0.80);
-            padding: 1.5vh 2vw;
-            border-radius: 16px;
-            border: 2px solid #0C2D03;
+        .chat-input {
             width: 100%;
-            cursor: pointer;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
 
+        .send-button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Right Column - Garden Styles */
         .right-column {
             padding: 2vh 2vw;
             display: flex;
@@ -97,33 +137,31 @@
             text-align: center;
         }
 
-        .icon {
-            width: 50px;
-            height: 50px;
-            background: #D9D9D9;
-            border-radius: 50%;
+        .shop-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 1vw;
+            margin-bottom: 2vh;
+        }
+
+        .main-button {
+            cursor: pointer;
+            box-shadow: rgb(235, 235, 235) 0px 6px 0px;
+            font-size: 22px;
+            height: 55px;
+            text-transform: uppercase;
+            color: hsl(175, 26%, 41%);
+            font-weight: bold;
+            width: 200px;
+            background-color: white;
+            border: none;
+            margin: 20px 0px 0px;
+            padding: 0px 12px;
+            border-radius: 4px;
+            transition: color 0.5s ease-in-out 0s;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            border: 2px solid #0C2D03;
-        }
-
-        .time-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1vw;
-            margin-bottom: 2vh; /* Add margin to increase space below the buttons */
-        }
-
-        .time-btn {
-            padding: 1vh 3vw;
-            background: rgba(169, 176, 183, 0.37);
-            border: 2px solid #0C2D03;
-            color: white;
-            font-size: clamp(14px, 1vw, 18px);
-            cursor: pointer;
-            border-radius: 8px;
         }
 
         .garden-grid {
@@ -144,7 +182,7 @@
             position: relative;
         }
 
-        .plant {
+        .plant-image {
             width: 100%;
             height: 20vh;
             position: absolute;
@@ -155,62 +193,65 @@
             transition: all 0.3s ease;
         }
 
-        .divider {
-            width: 2px;
+        .error-message {
+            color: #f44336;
+            padding: 10px;
+            text-align: center;
+            background: #ffebee;
+            margin: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .typing-indicator {
+            padding: 12px;
             background: white;
-            height: 100%;
-            position: absolute;
-            left: 33.33%;
+            border-radius: 10px;
+            display: none;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
         }
 
-        .main-button {
-            cursor: pointer;
-            box-shadow: rgb(235, 235, 235) 0px 6px 0px;
-            font-size: 22px;
-            height: 55px;
-            text-transform: uppercase;
-            color: hsl(175, 26%, 41%);
-            font-weight: bold;
-            width: 200px; /* Increase width to fit text */
-            background-color: white;
-            border-width: initial;
-            border-style: none;
-            margin: 20px 0px 0px;
-            padding: 0px 12px;
-            border-radius: 4px;
-            transition: color 0.5s ease-in-out 0s;
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Center text inside button */
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #90a4ae;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite ease-in-out;
         }
 
-        .main-button:focus, .main-button:active {
-            outline: none;
-        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 
-        .main-button.active {
-            transform: translateY(6px);
-            box-shadow: none;
-            outline: none;
-        }
-
-        .shop-controls {
-            display: flex;
-            justify-content: space-between;
-            gap: 1vw; /* Add gap between buttons */
-            margin-bottom: 2vh; /* Add margin to increase space below the buttons */
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
     </style>
 </head>
 <body>
     <div class="dashboard">
-        <div class="divider"></div>
-        <!-- Left Column -->
+        <!-- Left Column - Chat -->
         <div class="left-column">
-            <div class="analytics-overview">Analytics Overview</div>
-            <div class="analytics-box"></div>
-            <button class="read-analytics">Read Analytics</button>
-            <div class="analytics-box"></div>
+            <div class="chat-header">
+                <h2>Garden Assistant</h2>
+                <h3>Powered by Gemini API</h3>
+            </div>
+            <div id="error" class="error-message"></div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">Hello! I'm your garden assistant. How can I help you today?</div>
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="userInput" class="chat-input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                <button class="send-button" onclick="sendMessage()">Send</button>
+            </div>
         </div>
 
         <!-- Right Column -->
@@ -269,5 +310,97 @@
             </div>
         </div>
     </div>
+    <script>
+        const API_KEY = 'AIzaSyCdf_cSIe0iWw4AKu_JSto1XYegB5N6dO8';
+        const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+        async function callGeminiAPI(prompt) {
+            try {
+                const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('API Error:', errorData);
+                    throw new Error(errorData.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                    return data.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error('Invalid response format from API');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Error: ${error.message || 'Failed to get response from AI. Please try again.'}`);
+                return null;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'block';
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'none';
+        }
+
+        function addMessage(message, isUser) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.textContent = message;
+            messagesDiv.insertBefore(messageDiv, document.getElementById('typingIndicator'));
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, true);
+                input.value = '';
+                
+                showTypingIndicator();
+                
+                const response = await callGeminiAPI(message);
+                hideTypingIndicator();
+                
+                if (response) {
+                    addMessage(response, false);
+                }
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
 </body>
 </html>
