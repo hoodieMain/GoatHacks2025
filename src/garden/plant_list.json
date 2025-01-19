@@ -58,50 +58,5 @@
             ".assets/berry_bush2.png",
             ".assets/berry_bush3.png"
         ]
-    },
-    {
-        "species": "Moonflower",
-        "min_growth": 1,
-        "max_growth": 3,
-        "max_age": 15,
-        "yield_chance": 0.25,
-        "min_yield": 1,
-        "max_yield": 3,
-        "growth_stages": [
-            ".assets/moonflower0.png",
-            ".assets/moonflower1.png",
-            ".assets/moonflower2.png",
-            ".assets/moonflower3.png"
-        ]
-    },
-    {
-        "species": "Crystal Cactus",
-        "min_growth": 0,
-        "max_growth": 2,
-        "max_age": 50,
-        "yield_chance": 0.15,
-        "min_yield": 2,
-        "max_yield": 6,
-        "growth_stages": [
-            ".assets/crystal_cactus0.png",
-            ".assets/crystal_cactus1.png",
-            ".assets/crystal_cactus2.png",
-            ".assets/crystal_cactus3.png"
-        ]
-    },
-    {
-        "species": "Fire Lily",
-        "min_growth": 2,
-        "max_growth": 5,
-        "max_age": 20,
-        "yield_chance": 0.35,
-        "min_yield": 1,
-        "max_yield": 4,
-        "growth_stages": [
-            ".assets/fire_lily0.png",
-            ".assets/fire_lily1.png",
-            ".assets/fire_lily2.png",
-            ".assets/fire_lily3.png"
-        ]
     }
 ]
