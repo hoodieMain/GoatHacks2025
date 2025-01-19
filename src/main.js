@@ -133,18 +133,23 @@ class TaskManager {
 const taskManager = new TaskManager();
 
 // Function to add new task from form
-function addNewTask() {
+window.addNewTask = function() {
   const title = document.getElementById('taskTitle').value;
   const pomodoros = parseInt(document.getElementById('estimatedPomodoros').value);
   const priority = document.getElementById('taskPriority').value;
 
   if (title && pomodoros) {
+    // Assuming taskManager is defined elsewhere and has an addTask method
     taskManager.addTask(title, pomodoros, priority);
+
+    // Reset form inputs
     document.getElementById('taskTitle').value = '';
     document.getElementById('estimatedPomodoros').value = '1';
     document.getElementById('taskPriority').value = 'medium';
+  } else {
+    alert("Please fill out all required fields!");
   }
-}
+};
 
 const timer = {
   session: 30,
@@ -155,8 +160,13 @@ const timer = {
 
 // Timer functionality
 let interval;
-let gameTickInterval = 3; // The amount of time between each game tick in seconds.
+let gameTickInterval = 1; // The amount of time between each game tick in seconds.
 let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
+
+// Loads the plant_list.json file and sets the plant_list variable in the game manager.
+gameManager.loadPlantData().then(() => {
+  console.log('GameManager is ready with plant data.');
+});
 
 const buttonSound = new Audio('src/timer/button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
