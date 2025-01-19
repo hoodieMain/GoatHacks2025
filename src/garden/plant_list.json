@@ -4,14 +4,13 @@
         "min_growth": 1,
         "max_growth": 2,
         "max_age": 10,
-        "yield_chance": 0.2,
-        "min_yield": 1,
-        "max_yield": 2,
+        "min_yield": 2,
+        "max_yield": 3,
         "growth_stages": [
-            ".assets/rose0.png",
-            ".assets/rose1.png",
-            ".assets/rose2.png",
-            ".assets/rose3.png"
+            "flower0.png",
+            "flower1.png",
+            "flower2.png",
+            "flower3.png"
         ]
     },
     {
@@ -19,14 +18,13 @@
         "min_growth": 1,
         "max_growth": 1,
         "max_age": 3,
-        "yield_chance": 0.0,
         "min_yield": 0,
         "max_yield": 0,
         "growth_stages": [
-            ".assets/weed0.png",
-            ".assets/weed1.png",
-            ".assets/weed2.png",
-            ".assets/weed3.png"
+            "weed0.png",
+            "weed1.png",
+            "weed2.png",
+            "weed3.png"
         ]
     },
     {
@@ -34,29 +32,27 @@
         "min_growth": 0,
         "max_growth": 10,
         "max_age": 100,
-        "yield_chance": 0.1,
-        "min_yield": 3,
-        "max_yield": 7,
+        "min_yield": 15,
+        "max_yield": 30,
         "growth_stages": [
-            ".assets/oak0.png",
-            ".assets/oak1.png",
-            ".assets/oak2.png",
-            ".assets/oak3.png"
+            "oak0.png",
+            "oak1.png",
+            "oak2.png",
+            "oak3.png"
         ]
     },
     {
         "species": "Berry Bush",
         "min_growth": 3,
         "max_growth": 10,
-        "max_age": 100,
-        "yield_chance": 0.3,
-        "min_yield": 2,
-        "max_yield": 5,
+        "max_age": 30,
+        "min_yield": 3,
+        "max_yield": 8,
         "growth_stages": [
-            ".assets/berry_bush0.png",
-            ".assets/berry_bush1.png",
-            ".assets/berry_bush2.png",
-            ".assets/berry_bush3.png"
+            "berry_bush0.png",
+            "berry_bush1.png",
+            "berry_bush2.png",
+            "berry_bush3.png"
         ]
     }
 ]

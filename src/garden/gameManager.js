@@ -5,7 +5,7 @@ const plant_file = './src/garden/plant_list.json'; // The path to the .json file
 
 class GameManager {
     
-    constructor(plant_pots = 3, plants = [], money = 0, xp = 0){
+    constructor(plant_pots = 3, plants = [], money = 500, xp = 250){
         this.plant_pots = plant_pots;
         this.plants = plants;
         this.money = money;
@@ -22,13 +22,32 @@ class GameManager {
         }
     }
 
+    rehydratePlants() {
+        this.plants = this.plants.map(data => 
+            new Plant(
+                data.species,
+                data.min_growth,
+                data.max_growth,
+                data.max_age,
+                data.min_yield,
+                data.max_yield,
+                data.growth_stages
+            )
+        );
+        console.log('Rehydrated plants:', this.plants);
+    }
+
     // Occurs every X seconds that the pomodoro runs. Grows plants and gives XP.
     gameTick() {
+        console.log('Plants array:', this.plants);
+
         for (let plant of this.plants) {
+            console.log('Plant instance:', plant);
+            console.log('Is plant an instance of Plant?', plant instanceof Plant);
             this.money += plant.grow(null, true);
         }
         console.log("Money: $" + this.money);
-        this.setXP = this._xp + 10;
+        this.setXP(this.getXP() + 80);
         console.log("XP: " + this._xp);
         
         console.log("\n");
@@ -36,27 +55,19 @@ class GameManager {
     }
 
     // Getter for XP
-    get getXP() {
+    getXP() {
         return this._xp;
     }
 
     // Setter for XP
-    set setXP(value) {
+    setXP(value) {
         this._xp = value;
 
         // Emit a custom event when XP changes
         const event = new CustomEvent('xpChanged', { detail: { xp: this._xp } });
         document.dispatchEvent(event); // Notify listeners
-        
-        // Check if XP threshold for a new plant is met
-        if (this._xp >= 100) {
-            this._xp -= 100; // Deduct 100 XP
-            const newPlant = this.randomPlant(); // Add the new plant
-            const plantEvent = new CustomEvent('newPlantAdded', { detail: { plant: newPlant } });
-            document.dispatchEvent(plantEvent); // Notify listeners about the new plant
-        }
     }
-
+    
     // Loads plant data from the plant file variable
     async loadPlantData() {
         try {
@@ -85,7 +96,15 @@ class GameManager {
 
         const random_index = Math.floor(Math.random() * this.plant_list.length);
         const plant_data = this.plant_list[random_index];
-        const new_plant = new Plant(plant_data.species, plant_data.min_growth, plant_data.max_growth, plant_data.max_age, plant_data.yield_chance, plant_data.growth_stages);
+        const new_plant = new Plant(
+            
+            plant_data.species, 
+            plant_data.min_growth, 
+            plant_data.max_growth, 
+            plant_data.max_age, 
+            plant_data.min_yield,
+            plant_data.max_yield, 
+            plant_data.growth_stages);
 
         this.newPlant(new_plant);
         console.log(`You received a new plant: ${plant_data.species}`);

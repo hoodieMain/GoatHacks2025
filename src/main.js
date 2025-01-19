@@ -161,12 +161,29 @@ const timer = {
 // Timer functionality
 let interval;
 let gameTickInterval = 1; // The amount of time between each game tick in seconds.
-let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
 
+let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
+loadGameManager();
 // Loads the plant_list.json file and sets the plant_list variable in the game manager.
 gameManager.loadPlantData().then(() => {
   console.log('GameManager is ready with plant data.');
 });
+
+function saveGameManager() {
+  localStorage.setItem('gameManager', JSON.stringify(gameManager));
+}
+
+function loadGameManager() {
+  const savedData = localStorage.getItem('gameManager');
+  if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      gameManager = Object.assign(new GameManager(), parsedData);
+      console.log('GameManager loaded:', gameManager);
+      gameManager.rehydratePlants(); // Ensure proper instantiation
+  } else {
+      console.error('No gameManager data found in localStorage!');
+  }
+}
 
 const buttonSound = new Audio('src/timer/button-sound.mp3');
 const mainButton = document.getElementById('js-btn');
@@ -346,6 +363,8 @@ function handleMode(event) {
   stopTimer();
 }
 
+document.getElementById('xp-count').innerHTML = `XP: ${gameManager.getXP()}`;
+
 function updateTimerFromText() {
   const minutes = parseInt(document.getElementById('js-minutes').textContent, 10);
   const seconds = parseInt(document.getElementById('js-seconds').textContent, 10);
@@ -404,7 +423,13 @@ document.addEventListener('DOMContentLoaded', () => {
   switchMode('session');
 });
 
+document.querySelector('#js-garden-btn').addEventListener('click', () => {
+  saveGameManager();
+  window.location.href = 'src/garden/gardenvisual.html';
+});
+
+
 document.addEventListener('xpChanged', () => {
-  const xp = gameManager.getXP;
+  const xp = gameManager.getXP();
   document.getElementById('xp-count').textContent = `XP: ${xp}`;
 });
