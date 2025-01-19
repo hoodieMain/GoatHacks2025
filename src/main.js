@@ -108,6 +108,7 @@ class TaskManager {
     });
   }
 
+
   createTaskHTML(task, isCurrent) {
     return `
       <div class="task-item priority-${task.priority}">
@@ -160,7 +161,7 @@ const timer = {
 
 // Timer functionality
 let interval;
-let gameTickInterval = 1; // The amount of time between each game tick in seconds.
+let gameTickInterval = 5; // The amount of time between each game tick in seconds.
 
 let gameManager = new GameManager(); // Creates the game manager object to store data on the state of the garden and communicate with the game.
 loadGameManager();
@@ -170,6 +171,7 @@ gameManager.loadPlantData().then(() => {
 });
 
 function saveGameManager() {
+  console.log('gameManager', JSON.stringify(gameManager));
   localStorage.setItem('gameManager', JSON.stringify(gameManager));
 }
 
@@ -426,6 +428,12 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('#js-garden-btn').addEventListener('click', () => {
   saveGameManager();
   window.location.href = 'src/garden/gardenvisual.html';
+});
+
+document.getElementById("js-reset-btn").addEventListener('click', () => {
+  localStorage.clear();
+  gameManager = new GameManager();
+  location.reload();
 });
 
 

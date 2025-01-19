@@ -31,7 +31,8 @@ class GameManager {
                 data.max_age,
                 data.min_yield,
                 data.max_yield,
-                data.growth_stages
+                data.growth_stages,
+                data.age
             )
         );
         console.log('Rehydrated plants:', this.plants);
@@ -47,7 +48,7 @@ class GameManager {
             this.money += plant.grow(null, true);
         }
         console.log("Money: $" + this.money);
-        this.setXP(this.getXP() + 80);
+        this.setXP(this.getXP() + 10);
         console.log("XP: " + this._xp);
         
         console.log("\n");
